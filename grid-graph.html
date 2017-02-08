@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+    .grid-graph-container div {
+        padding: 5px 0;
+    }
+    
+    .grid-graph-container .options-container,
+    .grid-graph-container .defaults-container {
+        border: 1px solid black;
+        float: left;
+    }
+    
+    .grid-graph-container .defaults-container {
+        margin-left: 20px;
+    }
+    
+    .add-image {
+        margin-left: 50px;
+    }
+    
+    .grid-graph-container .grid-graph-canvas-container {
+        position: absolute;
+        top: 550px;
+    }
+    </style>
+    <link rel="stylesheet" href="style/grid-style.css" />
+</head>
+
+<body>
+    <div id="grid-graph-container" class="grid-graph-container">
+        <div class="user-area">
+            <div class="options-container">
+                <strong>Enter input values and click submit</strong>
+                <div class="bg-color">
+                    Background color(Enter in zero-x notation,e.g 0x000000):
+                    <input class="bg-color-input">
+                </div>
+                <div class="grid-line-color">
+                    Grid lines color(Enter in zero-x notation,e.g 0x000000):
+                    <input class="grid-color-input">
+                </div>
+                <div class="labels-color">
+                    Labels color(Enter in zero-x notation,e.g 0x000000):
+                    <input class="labels-color-input">
+                </div>
+                <div class="axes-color">
+                    Axes color(Enter in zero-x notation,e.g 0x000000):
+                    <input class="axes-color-input">
+                </div>
+                <div class="canvas-width">
+                    Canvas Width:
+                    <input class="width-input">
+                </div>
+                <div class="canvas-height">
+                    Canvas Height:
+                    <input class="height-input">
+                </div>
+                <div class="x-options">
+                    X-axis
+                    <br/>
+                    <div class="x-lower">
+                        Lower limit:
+                        <input class="x-lower-input" />
+                        <br/>
+                    </div>
+                    <div class="x-upper">
+                        Upper limit:
+                        <input class="x-upper-input" />
+                        <br/>
+                    </div>
+                    <div class="x-interval">
+                        Interval:
+                        <input class="x-interval-input" />
+                        <br/>
+                    </div>
+                </div>
+                <div class="y-options">
+                    Y-Axis
+                    <div class="y-lower">
+                        Lower limit:
+                        <input class="y-lower-input" />
+                    </div>
+                    <div class="y-upper">
+                        Upper limit:
+                        <input class="y-upper-input" />
+                    </div>
+                    <div class="y-interval">
+                        Interval:
+                        <input class="y-interval-input" />
+                    </div>
+                </div>
+                <div class="checkbox-options">
+                    <input class="show-axes-check" type="checkbox" checked=true>Show Axes
+                    <input class="show-grid-check" type="checkbox" checked=true>Show Grid Lines
+                    <input class="show-labels-check" type="checkbox" checked=true>Show Labels
+                </div>
+                <br/>
+                <button class="submit-button">Click here to submit input values</button>
+            </div>
+            <div class="defaults-container">
+                <strong>Default Grid Values</strong>
+                <div class="defaults">
+                    <table>
+                        <tr>
+                            <td>Background Color:</td>
+                            <td><strong>0xffffff</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Grid Lines Color:</td>
+                            <td><strong>0xa0a0a0</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Labels Color:</td>
+                            <td><strong>0x000000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Axes Color:</td>
+                            <td><strong>0x000000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Canvas Width:</td>
+                            <td><strong>400</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Canvas Height:</td>
+                            <td><strong>400</strong></td>
+                        </tr>
+                        <tr>
+                            <td>X-axis Lower Limit:</td>
+                            <td><strong>-10</strong></td>
+                        </tr>
+                        <tr>
+                            <td>X-axis Upper Limit:</td>
+                            <td><strong>100</strong></td>
+                        </tr>
+                        <tr>
+                            <td>X-axis Interval:</td>
+                            <td><strong>10</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Y-axis Lower Limit:</td>
+                            <td><strong>-10</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Y-axis Upper Limit:</td>
+                            <td><strong>100</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Y-axis Interval:</td>
+                            <td><strong>10</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Show Axes:</td>
+                            <td><strong>true</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Show Grid Lines:</td>
+                            <td><strong>true</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Show Labels:</td>
+                            <td><strong>true</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <input type="button" class="add-image" value="Add Image" />
+        </div>
+        <br/>
+        <div id="grid-graph-canvas-container" class="grid-graph-canvas-container"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/3.0.7/pixi.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
+    <script>
+    requirejs.config({
+        "baseUrl": "./"
+    });
+    require([
+        "js/views/app.js"
+    ], function(GridGraphAppView) {
+        GridGraphAppView.startApp();
+    });
+    </script>
+</body>
+
+</html>
